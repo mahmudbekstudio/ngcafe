@@ -1,0 +1,19 @@
+<div class="container">
+	<form #loginFormTemp="ngForm" (ngSubmit)="loginFormSubmit($event)" class="form-signin">
+		<h2 class="form-signin-heading">Please sign in</h2>
+		<ul *ngIf="errors.length" class="alert alert-danger">
+			<li *ngFor="let error of errors">{{error}}</li>
+		</ul>
+		<label for="inputEmail" class="sr-only">Email address</label>
+		<input [(ngModel)]="loginForm.email" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input [(ngModel)]="loginForm.pass" name="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+		<div class="checkbox">
+			<label>
+				<input [(ngModel)]="loginForm.remember" name="remember" type="checkbox" value="remember-me"> Remember me
+			</label>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block login-form-btn" [disabled]="!loginFormTemp.form.valid" type="submit">Login</button>
+	</form>
+
+</div> <!-- /container -->
