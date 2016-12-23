@@ -7,11 +7,28 @@ class Application {
 	public function __construct($db, $router) {
 		self::set('db', $db);
 		self::set('router', $router);
+		$this->initToken();
 	}
 
 	public function run($env) {
 		$this->env = $env;
 		self::initRouter();
+	}
+
+	public function initToken() {
+		$request = new Request();
+		$token = $request->get('token');
+
+		if($token) {
+			$expire = time() + 30 * 24 * 60 * 60;
+			foreach($token as $key => $val) {
+				$store = new Cookie($key, $expire);
+				$cookieVal = unserialize($val);
+				foreach($cookieVal as $ck => $cv) {
+					$store->set($ck, $cv);
+				}
+			}
+		}
 	}
 
 	public static function set($var, $val) {
@@ -51,19 +68,39 @@ class Application {
 
 	private static function sendResult($actionResult) {
 		$status = array('result' => true, 'message' => '');
-		$config = array();
+		$config = self::getResultConfig();
 
 		if(!$actionResult) {
 			$status['result'] = false;
 			$status['message'] = 'Error';
 		}
 
-		echo json_encode(array(
+		$json = json_encode(array(
 			'config' => $config,
 			'data' => $actionResult,
 			'status' => $status
 		));
+
+		$request = new Request();
+		if($request->get('callback')) {
+			$json = $request->get('callback') . '(' . $json . ')';
+		}
+
+		echo $json;
 	}
 
+	private static function getResultConfig() {
+		$result = array(
+			'auth' => array('login' => false, 'systemLogin' => false),
+			'token' => Cookie::getAllCookie()
+		);
+
+		$result['auth']['login'] = self::get('authentication')->isAuth();
+
+		$systemAuth = self::get('authentication')->getInstance('systemAuthentication');
+		$result['auth']['systemLogin'] = $systemAuth->isAuth();
+
+		return $result;
+	}
 
 }

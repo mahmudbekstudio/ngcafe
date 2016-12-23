@@ -2,10 +2,10 @@
 class Config {
 	public static $db = array(
 		'host'=> 'localhost',
-		'db' => 'student',
+		'db' => 'tradeposter',
 		'user' => 'root',
 		'pass' => '',
-		'prefix' => 'std_',
+		'prefix' => 'trade_',
 		'charset' => 'utf8',
 		'collate' => '',
 	);
@@ -19,7 +19,10 @@ class Config {
 
 	public static $routes = array(
 		array('GET', '/goodslist', 'goods#list', 'goodslist'),
-		array('POST', '/login', 'user#login', 'login'),
+		array('GET', '/login', 'user#login', 'login'),//TODO: change to POST
+		array('GET|POST', '/logout', 'user#logout', 'logout'),
+		array('GET', '/systemlogin', 'user#systemlogin', 'systemlogin'),//TODO: change to POST
+		array('GET', '/config', 'default#config', 'config'),
 	);
 
 	public static $level = array(

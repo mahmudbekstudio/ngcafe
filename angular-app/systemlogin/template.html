@@ -1,19 +1,13 @@
-<div class="container">
-	<form #loginFormTemp="ngForm" (ngSubmit)="loginFormSubmit($event)" class="form-signin">
-		<h2 class="form-signin-heading">Please sign in</h2>
-		<ul *ngIf="errors.length" class="alert alert-danger">
-			<li *ngFor="let error of errors">{{error}}</li>
-		</ul>
-		<label for="inputEmail" class="sr-only">Email address</label>
-		<input [(ngModel)]="loginForm.email" name="email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input [(ngModel)]="loginForm.pass" name="pass" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-		<div class="checkbox">
-			<label>
-				<input [(ngModel)]="loginForm.remember" name="remember" type="checkbox" value="remember-me"> Remember me
-			</label>
+<div class="text-center loginscreen">
+	<div>
+		<div class="row keyboard-inp">
+			<div *ngFor="let item of passwordShow" class="col-md-3"><div class="keybaord-inp-item"><i class="fa {{item}}" aria-hidden="true"></i></div></div>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block login-form-btn" [disabled]="!loginFormTemp.form.valid" type="submit">Login</button>
-	</form>
-
-</div> <!-- /container -->
+		<div class="row">
+			<div *ngFor="let item of buttonsList" class="col-md-4"><button [disabled]="passwordFull" (click)="btnClick(item)" type="button" class="keybaord-btn-item btn btn-info btn-outline dim btn-large-dim" [value]="item" [innerHTML]="item"></button></div>
+			<div class="col-md-4"><button [disabled]="passwordEmpty" (click)="btnClick('remove')" type="button" class="keybaord-btn-item btn btn-danger dim btn-large-dim"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></button></div>
+			<div class="col-md-4"><button [disabled]="!passwordFull" (click)="btnClick('enter')" type="button" class="keybaord-btn-item btn btn-primary dim btn-large-dim"><i class="fa fa-sign-in" aria-hidden="true"></i></button></div>
+		</div>
+		<p class="text-center"><a href="#" (click)="exitSystem($event);">Exit</a></p>
+	</div>
+</div>

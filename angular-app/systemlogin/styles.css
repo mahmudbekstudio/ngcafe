@@ -1,43 +1,92 @@
-body {
-	padding-top: 40px;
-	padding-bottom: 40px;
-}
-
-.form-signin {
-	max-width: 330px;
-	padding: 15px;
+.loginscreen {
+	width: 300px;
 	margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-	margin-bottom: 10px;
-}
-.form-signin .checkbox {
-	font-weight: normal;
-}
-.form-signin .form-control {
-	position: relative;
-	height: auto;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	padding: 5px 10px;
-	font-size: 16px;
-}
-.form-signin .form-control:focus {
-	z-index: 2;
-}
-.form-signin input[type="email"] {
-	margin-bottom: -1px;
-	border-bottom-right-radius: 0;
-	border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-	margin-bottom: 10px;
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
+	max-width: 400px;
+	padding-top: 40px;
+	z-index: 100;
 }
 
-.form-signin .login-form-btn {
-	padding: 5px 10px;
+.keyboard-inp {
+	margin-bottom: 20px;
+}
+
+.keybaord-inp-item {
+	background-color: #fff;
+	border: 1px solid #18a689;
+	border-radius: 5px;
+	height: 53px;
+	width: 53px;
+}
+
+.keybaord-inp-item .fa {
+	line-height: 51px;
+	margin-left: 1px;
+}
+
+button.dim::before {
+	color: #fff;
+	display: block;
+	font-size: 50px;
+	font-weight: normal;
+	line-height: 1em;
+	padding-top: 10px;
+}
+
+button.btn-info.dim {
+	box-shadow: 0 0 0 #1eacae inset, 0 5px 0 0 #1eacae, 0 10px 5px #999999;
+}
+
+button.btn-primary.dim {
+	box-shadow: 0 0 0 #16987e inset, 0 5px 0 0 #16987e, 0 10px 5px #999999;
+}
+
+button.btn-danger.dim {
+	box-shadow: 0 0 0 #ea394c inset, 0 5px 0 0 #ea394c, 0 10px 5px #999999;
+}
+
+.keybaord-btn-item.btn-large-dim {
+	font-size: 42px;
+	height: 81px;
+	width: 81px;
+}
+
+.btn-info.btn-outline {
+	color: #23c6c8;
+}
+
+button.dim {
+	border-radius: 5px;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 600;
+	margin-bottom: 20px !important;
+	margin-right: 10px;
+	padding-top: 6px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.btn-outline {
+	background-color: transparent;
+	transition: all 0.5s ease 0s;
+}
+
+.btn-info {
+	border-color: #23c6c8;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info,
+.btn-info:active:focus,
+.btn-info:active:hover,
+.btn-info.active:hover,
+.btn-info.active:focus {
+	background-color: #21b9bb;
+	border-color: #21b9bb;
+	color: #ffffff;
 }

@@ -9,8 +9,14 @@ class Model extends Instance {
 		$this->db = Application::get('db');
 	}
 
-	public function get($params = array()) {
-		return $this->db->select($this->table, $params);
+	public function get($params = array(), $one = false) {
+		$result = $this->db->select($this->table, $params);
+
+		if($one && isset($result[0])) {
+			$result = $result[0];
+		}
+
+		return $result;
 	}
 
 	public function delete($id, $operation = 'OR') {

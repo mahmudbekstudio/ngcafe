@@ -8,6 +8,8 @@ class Controller extends Instance {
 		)*/
 	);
 
+	private $models = array();
+
 	public function __construct() { }
 
 	public function actionIndex() {
@@ -62,5 +64,14 @@ class Controller extends Instance {
 
 	public function getAccess() {
 		return $this->access;
+	}
+
+	public function getModel($name) {
+		if(!isset($this->models[$name])) {
+			$modelClass = ucfirst(strtolower($name)) . 'Model';
+			$this->models[$name] = new $modelClass();
+		}
+
+		return $this->models[$name];
 	}
 }

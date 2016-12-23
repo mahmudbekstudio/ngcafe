@@ -1,14 +1,33 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Jsonp } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
+
+import { Configuration } from './configuration';
 
 declare var jQuery: any;
 
 @Injectable()
 export class Service {
-    private request = {method: 'get', url: '', data: {}};
+    private request: any = {method: 'get', url: '', data: {}};
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private jsonp: Jsonp, private config: Configuration) {
+        //this.r1esetParams();
+    }
+
+    public loadConfig(): void {
+        this.url = this.config.configUrl;
+        this.send().subscribe(
+            data => {
+                this.config.initConfig(data.config);
+                this.config.loading = true;
+            },
+            error => console.log(error)
+        );
+    }
+
+    public resetParams(): void {
+        this.request = {method: 'get', url: '', data: {}};
+    }
 
     private extractData(res: Response) {
         let body = res.json();
@@ -30,15 +49,34 @@ export class Service {
     }
 
     send(): Observable<any> {
+        let newUrl: string;
 
         if(this.method === 'post' || this.method === 'put') {
-            return this.http[this.method](this.url, this.data)
+            if(this.config.requestType == 'jsonp') {
+                newUrl = this.url + (this.url.indexOf('?') > -1 ? '&' : '?') + 'callback=JSONP_CALLBACK';
+            } else {
+                newUrl = this.url;
+            }
+
+            newUrl = newUrl + (newUrl.indexOf('?') > -1 ? '&' : '?') + jQuery.param({token: this.config.token});
+
+            return this[this.config.requestType][this.method](newUrl, this.data)
                 .map(this.extractData)
                 .catch(this.handleError);
         } else {
-            let newUrl = this.url + (this.url.indexOf('?') > -1 ? '&' : '?') + jQuery.param(this.data);
+            let newData: any;
 
-            return this.http[this.method](newUrl)
+            if(this.config.requestType == 'jsonp') {
+                newData = jQuery.extend(this.data, {callback: 'JSONP_CALLBACK'});
+            } else {
+                newData = this.data;
+            }
+
+            newData = jQuery.extend(newData, {token: this.config.token});
+
+            newUrl = this.url + (this.url.indexOf('?') > -1 ? '&' : '?') + jQuery.param(newData);
+
+            return this[this.config.requestType][this.method](newUrl)
                 .map(this.extractData)
                 .catch(this.handleError);
         }

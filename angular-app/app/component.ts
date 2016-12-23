@@ -1,17 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Configuration } from "../classes/configuration";
+import { Service } from "../classes/service";
+import { Configuration } from '../classes/configuration';
 
 import '../rxjs-operators';
 
 @Component({
   selector: 'application',
-  template: `<system-login></system-login>`,
+  template: `
+  <div *ngIf="!config.loading">Wait...</div>
+  <login *ngIf="config.loading && !config.auth.login"></login>
+  <system-login *ngIf="config.loading && config.auth.login && !config.auth.systemLogin"></system-login>
+  <div *ngIf="config.loading && config.auth.login && config.auth.systemLogin">Dashboard</div>
+  `,
 })
-export class AppComponent  {
+export class AppComponent implements OnInit{
 
-  constructor(public config: Configuration) {
+  constructor(private service: Service, private config: Configuration) {
     //this.config.setBodyClass('testing');
+  }
+
+  ngOnInit(): void {
+    this.service.loadConfig();
   }
 
 }

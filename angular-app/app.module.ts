@@ -1,12 +1,13 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule/*, JsonpModule*/ } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { Configuration } from './classes/configuration';
 import { Service } from './classes/service';
 
 import { AppComponent }  from './app/component';
+import { Login } from './login/component';
 import { SystemLogin } from './systemlogin/component';
 
 @NgModule({
@@ -14,7 +15,7 @@ import { SystemLogin } from './systemlogin/component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    //JsonpModule,
+    JsonpModule,
   ],
   providers:   [
     Configuration,
@@ -22,6 +23,7 @@ import { SystemLogin } from './systemlogin/component';
   ],
   declarations: [
     AppComponent,
+    Login,
     SystemLogin
   ],
   bootstrap:    [ AppComponent ]
