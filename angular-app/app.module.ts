@@ -9,6 +9,7 @@ import { Service } from './classes/service';
 import { AppComponent }  from './app/component';
 import { Login } from './login/component';
 import { SystemLogin } from './systemlogin/component';
+import { Dashboard } from './dashboard/component';
 
 @NgModule({
   imports:      [
@@ -24,7 +25,8 @@ import { SystemLogin } from './systemlogin/component';
   declarations: [
     AppComponent,
     Login,
-    SystemLogin
+    SystemLogin,
+    Dashboard
   ],
   bootstrap:    [ AppComponent ]
 })

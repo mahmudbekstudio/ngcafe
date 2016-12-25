@@ -1,0 +1,201 @@
+<div class="container-fluid dashboard">
+	<div class="header">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<div class="barcode-container">
+				<input id="barcode-scan" placeholder="Barcode" class="form-control barcode-scan" type="text">
+				<input class="form-control barcode-scan-count" value="1" type="text">
+			</div>
+		</div>
+		<div class="col-sm-6 profile-container">
+			<span class="welcome-message">Mahmud Odilov (<a href="#" class="send-all-baskets"><span class="all-baskets-count">0</span> x <i class="fa fa-refresh fa-1x fa-fw"></i></a>)</span>
+			<a class="logout-link" href="#"><i class="fa fa-sign-out"></i> Выйти</a>
+		</div>
+	</div>
+	<div class="left-side" [class.show-footer]="footerButtons">
+		<div class="basket-tab-content container-fluid">
+			<div class="custom-table row">
+				<div class="custom-table-header col-xm-12">
+					<div class="row custom-table-row">
+						<div class="col-sm-6 col-xs-4 custom-table-th">Название</div>
+						<div class="col-sm-1 col-xs-2 custom-table-th">Кол.</div>
+						<div class="col-sm-2 col-xs-2 custom-table-th">Цена</div>
+						<div class="col-sm-2 col-xs-2 custom-table-th">Сумма</div>
+						<div class="col-sm-1 col-xs-2 custom-table-th">Уд.</div>
+					</div>
+				</div>
+				<div class="custom-table-body col-xm-12 basket-list">
+					<div class="row custom-table-row basket-row-item-example" data-id="">
+						<div class="col-sm-6 col-xs-4 custom-table-td basket-column-name clickable" data-callback="showInfoPopup" data-return="alert($(_this).closest('.custom-table-row').attr('data-id'));" data-value="name">
+							<div class="basket-column-name-title">
+								<strong class="basket-column-name-title-name"></strong>
+								(<span class="basket-column-name-title-unit"></span>
+								<span class="basket-column-name-title-unit-type"></span>,
+								<span class="basket-column-name-title-weight"></span>
+								<span class="basket-column-name-title-weight-type"></span>,
+								ш:<span class="basket-column-name-title-code"></span>)
+							</div>
+							<div class="basket-column-name-info">
+								<span class="basket-column-name-title-category"></span>,
+								с. <span class="basket-column-name-title-country"></span>,
+								пр. "<span class="basket-column-name-title-manufacture"></span>"
+							</div>
+						</div>
+						<div class="col-sm-1 col-xs-2 custom-table-td basket-column-count clickable" data-callback="showChangeCountPopup" data-value="count">
+							<span class="value"></span> <span class="hidden-xs unit-type"></span>
+						</div>
+						<div class="col-sm-2 col-xs-2 custom-table-td basket-column-price clickable" data-callback="showAlert" data-return="return $(_this).closest('.custom-table-row').attr('data-id')" data-value="price">
+							<span class="value"></span> <span class="hidden-xs currency">so'm</span>
+						</div>
+						<div class="col-sm-2 col-xs-2 custom-table-td basket-column-total-price clickable" data-callback="alert" data-value="total_price">
+							<span class="value"></span> <span class="hidden-xs currency">so'm</span>
+						</div>
+						<div class="col-sm-1 col-xs-2 custom-table-td">
+							<button class="btn btn-sm btn-danger clickable" data-callback="deleteBasketItem"><i class="fa fa-lg fa-trash" aria-hidden="true"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="checkout">
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table table-bordered table-responsive">
+						<tbody>
+						<tr>
+							<td class="text-center">Итого</td>
+							<td class="text-center">0</td>
+						</tr>
+						</tbody>
+					</table>
+				</div><!-- col -->
+			</div><!-- row -->
+
+			<div class="row">
+				<div class="col-sm-3 text-center">
+					<div class="row">
+						<div class="col-sm-3">
+							<a href="#" class="btn btn-lg btn-link other-menu-items" data-original-title="" title=""><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
+						</div>
+						<div class="col-sm-9">
+							<a href="#" class="btn btn-lg btn-default basket-goods-clear"><i class="fa fa-lg fa-trash"></i> <span class="hidden-sm hidden-xs hidden-md">Отмена</span></a>
+						</div>
+					</div>
+				</div><!-- col -->
+				<div class="col-sm-3 text-center">
+					<a href="#" class="btn btn-lg btn-warning basket-goods-save"><i class="fa fa-lg fa-save"></i> <span class="hidden-sm hidden-xs hidden-md">Сохранить</span></a>
+				</div>
+				<div class="col-sm-3 text-center">
+					<a href="#" class="btn btn-lg btn-info basket-goods-return-saved"><i class="fa fa-lg fa-arrow-circle-up"></i> <span class="hidden-sm hidden-xs hidden-md">Вызвать</span></a>
+				</div>
+				<div class="col-sm-3 text-center">
+					<a href="#" class="btn btn-lg btn-success basket-goods-pay"><i class="fa fa-lg fa-money" aria-hidden="true"></i> <span class="hidden-sm hidden-xs hidden-md">Оплатить</span></a>
+				</div>
+			</div><!-- row -->
+		</div>
+	</div><div class="right-side" [class.show-footer]="footerButtons">
+		<div class="categories">
+			<div class="categories-header">Categories > </div>
+			<div class="categories-body">
+				<fieldset>
+					<legend>Categories</legend>
+					<div class="col-sm-3">
+						<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+							<div class="thumbnail">
+								<div class="caption">
+									<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+								</div>
+							</div>
+						</a>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Goods</legend>
+					<div class="col-sm-3">
+						<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+							<div class="thumbnail">
+								<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+								<div class="caption">
+									<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+									<span class="price">1 000</span>
+									<span class="price-shadow">1 000</span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-sm-3">
+						<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+							<div class="thumbnail">
+								<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+								<div class="caption">
+									<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+									<span class="price">1 000</span>
+									<span class="price-shadow">1 000</span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col-sm-3">
+						<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+							<div class="thumbnail">
+								<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+								<div class="caption">
+									<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+									<span class="price">1 000</span>
+									<span class="price-shadow">1 000</span>
+								</div>
+							</div>
+						</a>
+					</div>
+				</fieldset>
+
+			</div>
+		</div>
+	</div>
+	<div class="footer" [class.show-footer]="footerButtons">
+		<div [hidden]="footerButtons" class="show-footer-btn" (click)="showFooterBtnClick()"><i class="fa fa-caret-up" aria-hidden="true"></i></div>
+		<div [hidden]="!footerButtons" class="show-footer-btn" (click)="closeFooterBtnClick()"><i class="fa fa-caret-down" aria-hidden="true"></i></div>
+		<div [hidden]="!footerButtons" class="footer-goods">
+			<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+				<div class="thumbnail">
+					<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+					<div class="caption">
+						<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+						<span class="price">1 000</span>
+						<span class="price-shadow">1 000</span>
+					</div>
+				</div>
+			</a>
+			<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+				<div class="thumbnail">
+					<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+					<div class="caption">
+						<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+						<span class="price">1 000</span>
+						<span class="price-shadow">1 000</span>
+					</div>
+				</div>
+			</a>
+			<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+				<div class="thumbnail">
+					<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+					<div class="caption">
+						<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+						<span class="price">1 000</span>
+						<span class="price-shadow">1 000</span>
+					</div>
+				</div>
+			</a>
+			<a href="#" class="goods-item" data-id="1" data-name="Блинчик" data-code="0" data-price="1000.00" data-image="http://localhost/trading/cafe/img/blinchik.jpg">
+				<div class="thumbnail">
+					<img style="background-image: url('http://localhost/trading/cafe/img/blinchik.jpg')" src="http://localhost/trading/cafe/img/thumb-image.png" alt="Блинчик" class="img-responsive" title="Блинчик">
+					<div class="caption">
+						<strong class="goods-item-title" title="Блинчик">Блинчик</strong>
+						<span class="price">1 000</span>
+						<span class="price-shadow">1 000</span>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>

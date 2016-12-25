@@ -22,7 +22,7 @@ export class SystemLogin {
     constructor(public config: Configuration, private service: Service) {
         this.config.setTitle('System Login');
 
-        jQuery(document).on('keyup', function(e) {
+        jQuery(document).on('keyup', function(e: any) {
             if(e.keyCode == 8) {
                 jQuery('.keybaord-btn-item.btn-danger').trigger('click');
                 return false;

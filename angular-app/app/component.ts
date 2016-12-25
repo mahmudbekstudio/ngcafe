@@ -11,7 +11,7 @@ import '../rxjs-operators';
   <div *ngIf="!config.loading">Wait...</div>
   <login *ngIf="config.loading && !config.auth.login"></login>
   <system-login *ngIf="config.loading && config.auth.login && !config.auth.systemLogin"></system-login>
-  <div *ngIf="config.loading && config.auth.login && config.auth.systemLogin">Dashboard</div>
+  <dashboard *ngIf="config.loading && config.auth.login && config.auth.systemLogin">Dashboard</dashboard>
   `,
 })
 export class AppComponent implements OnInit{

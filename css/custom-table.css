@@ -1,0 +1,78 @@
+.custom-table {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: relative;
+	border: 1px solid #BBB;
+}
+
+.custom-table-header,
+.custom-table-body {
+	border-top: 1px solid #BBB;
+}
+
+.custom-table-th {
+	font-weight: bold;
+	background-color: #DDD;
+	color: #333;
+	height: 40px;
+	line-height: 33px;
+}
+
+.custom-table-th,
+.custom-table-td {
+	border-bottom: 1px solid #BBB;
+	border-right: 1px solid #BBB;
+	padding: 3px 6px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.custom-table-td {
+	height: 46px;
+}
+
+.custom-table-header {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	height: 40px;
+	z-index: 2;
+}
+
+.custom-table-body {
+	margin-top: 39px;
+	z-index: 1;
+}
+
+.custom-table-row {
+	padding: 0 15px;
+}
+
+.custom-table-header {
+	border-top: 0;
+}
+
+.custom-table-row .custom-table-td:last-child,
+.custom-table-row .custom-table-th:last-child {
+	border-right: 0;
+}
+
+.custom-table-row:nth-child(even) .custom-table-td {
+	background-color: #F6F6F6
+}
+
+.custom-table-body .custom-table-row .custom-table-td:nth-child(2),
+.custom-table-body .custom-table-row .custom-table-td:nth-child(3),
+.custom-table-body .custom-table-row .custom-table-td:nth-child(4),
+.custom-table-body .custom-table-row .custom-table-td:nth-child(5){
+	line-height: 40px;
+	text-align: center;
+}
+
+.custom-table-header .custom-table-row .custom-table-th:nth-child(2),
+.custom-table-header .custom-table-row .custom-table-th:nth-child(3),
+.custom-table-header .custom-table-row .custom-table-th:nth-child(4),
+.custom-table-header .custom-table-row .custom-table-th:nth-child(5){
+	text-align: center;
+}

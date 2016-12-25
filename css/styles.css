@@ -1,5 +1,15 @@
+html,
+body {
+  height: 100%;
+  background-color: #FFF;
+}
+
 .gray-bg {
   background-color: #f3f3f4;
+}
+
+.white-body {
+  background-color: #FFF !important;
 }
 
 .btn {

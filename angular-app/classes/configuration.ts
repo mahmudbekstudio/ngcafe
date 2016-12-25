@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { Settings } from '../settings';
-import forEach = ts.forEach;
 
 declare var jQuery: any;
 
